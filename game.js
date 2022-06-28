@@ -1,31 +1,19 @@
 const circles = []
-let width
-let height
-let ctx
 
 const setup = () => {
-  const canvas = document.getElementById('canvas')
-  ctx = canvas.getContext('2d')
-
-  width = document.body.clientWidth
-  height = document.body.clientHeight
-  canvas.width = width
-  canvas.height = height
-
-  ctx.moveTo(0, 0)
-  ctx.lineTo(width, height)
-  ctx.stroke()
+  const w = document.body.clientWidth
+  const h = document.body.clientHeight
+  createCanvas(w, h)
 
   setInterval(createCircle, 5000)
-  setInterval(draw, 50)
 }
 
 const draw = () => {
-  ctx.fillStyle = 'rgb(5, 66, 135)';
-  ctx.fillRect(0, 0, width, height)
-
+  background(5, 66, 135)
 
   for (const c of circles) {
+    noStroke()
+    fill(200, 66, 135)
     circle(c.x, c.y, c.size)
   }
 }
@@ -43,14 +31,5 @@ const createCircle = () => {
   })
 }
 
-const circle = (x, y, radius) => {
-  ctx.beginPath()
-  ctx.arc(x, y, radius, 0, 2 * Math.PI)
-  ctx.fillStyle = 'rgb(200, 66, 135)'
-  ctx.fill()
-  ctx.stroke()
-}
-
-const random = (min, max) => Math.random() * (max - min) + min
-
-setup()
+window.setup = setup
+window.draw = draw
