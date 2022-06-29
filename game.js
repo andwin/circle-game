@@ -13,6 +13,7 @@ const setup = () => {
 
 const draw = () => {
   background(5, 66, 135)
+  drawText()
 
   for (const c of circles) {
     noStroke()
@@ -43,6 +44,13 @@ const updateCircles = () => {
   }
 
   circles = circles.filter(c => c.size > minSize)
+}
+
+const drawText = () => {
+  textSize(64)
+  textAlign(CENTER)
+  fill(5, 200, 135)
+  text('Space Circles', width / 2, 60)
 }
 
 window.setup = setup
