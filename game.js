@@ -28,7 +28,7 @@ const createCircle = () => {
   circles.push({
     x,
     y,
-    size
+    size,
   })
 }
 
