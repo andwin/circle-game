@@ -48,7 +48,6 @@ const updateCircles = () => {
   const minSize = 5
 
   for (const c of circles) {
-    circle(c.x, c.y, c.size)
     c.size--
   }
 
