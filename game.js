@@ -1,4 +1,4 @@
-const circles = []
+let circles = []
 
 const setup = () => {
   const w = document.body.clientWidth
@@ -6,6 +6,7 @@ const setup = () => {
   createCanvas(w, h)
 
   setInterval(createCircle, 5000)
+  setInterval(updateCircles, 20)
 }
 
 const draw = () => {
@@ -29,6 +30,17 @@ const createCircle = () => {
     y,
     size
   })
+}
+
+const updateCircles = () => {
+  const minSize = 5
+
+  for (const c of circles) {
+    circle(c.x, c.y, c.size)
+    c.size--
+  }
+
+  circles = circles.filter(c => c.size > minSize)
 }
 
 window.setup = setup
