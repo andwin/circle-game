@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "@andwin/eslint-config",
+    "p5js"
+  ]
+}

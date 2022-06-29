@@ -1,0 +1,24 @@
+{
+  "name": "space-circles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andwin/space-circles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andwin/space-circles/issues"
+  },
+  "homepage": "https://github.com/andwin/space-circles#readme",
+  "devDependencies": {
+    "@andwin/eslint-config": "^0.0.11",
+    "eslint-config-p5js": "^1.1.0"
+  }
+}
