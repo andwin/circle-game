@@ -8,6 +8,7 @@ const setup = () => {
   const w = document.body.clientWidth
   const h = document.body.clientHeight
   createCanvas(w, h)
+  textFont('Rubik Moonrocks')
 
   setInterval(createCircle, 5000)
   setInterval(updateCircles, 20)
@@ -49,8 +50,6 @@ const updateCircles = () => {
 }
 
 const drawText = () => {
-  textFont('Rubik Moonrocks')
-
   const titleBreakpoint = 490
   const bigSize = width < titleBreakpoint ? 42 : 64
   const smallSize = width < titleBreakpoint ? 22 : 34
