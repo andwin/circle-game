@@ -2,7 +2,7 @@ import './style.css'
 
 let circles = []
 const score = 0
-const lives = 10
+let lives = 10
 
 const setup = () => {
   const w = document.body.clientWidth
@@ -46,7 +46,10 @@ const updateCircles = () => {
     c.size--
   }
 
+  const circleCountBefore = circles.length
   circles = circles.filter(c => c.size > minSize)
+  const removedCircles = circleCountBefore - circles.length
+  lives -= removedCircles
 }
 
 const drawText = () => {
