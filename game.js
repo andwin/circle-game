@@ -3,6 +3,8 @@ import './style.css'
 let circles = []
 const score = 0
 let lives = 10
+let createCirclesInterval
+let updateCirclesInterval
 
 const setup = () => {
   const w = document.body.clientWidth
@@ -10,13 +12,17 @@ const setup = () => {
   createCanvas(w, h)
   textFont('Rubik Moonrocks')
 
-  setInterval(createCircle, 5000)
-  setInterval(updateCircles, 20)
+  createCirclesInterval = setInterval(createCircle, 5000)
+  updateCirclesInterval = setInterval(updateCircles, 20)
 }
 
 const draw = () => {
   background(5, 66, 135)
   drawText()
+
+  if (lives === 0) {
+    return gameOver()
+  }
 
   for (const c of circles) {
     noStroke()
@@ -75,6 +81,21 @@ const drawText = () => {
   text('Lives', width - extraPadding, height - textPadding - extraPadding)
   textSize(bigSize)
   text(lives, width - extraPadding, height - extraPadding)
+}
+
+const gameOver = () => {
+  clearInterval(createCirclesInterval)
+  clearInterval(updateCirclesInterval)
+
+  const titleBreakpoint = 490
+  const bigSize = width < titleBreakpoint ? 42 : 64
+  const extraPadding = width < titleBreakpoint ? 20 : 35
+
+  fill(5, 200, 235)
+  textSize(bigSize)
+  textAlign(CENTER)
+  text('Game Over!', width / 2, height / 2 - extraPadding)
+  text(`Score ${score}`, width / 2, height / 2 + extraPadding)
 }
 
 window.setup = setup
