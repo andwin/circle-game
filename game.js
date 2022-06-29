@@ -47,6 +47,7 @@ const updateCircles = () => {
 }
 
 const drawText = () => {
+  textFont('Rubik Moonrocks')
   textSize(64)
   textAlign(CENTER)
   fill(5, 200, 135)
