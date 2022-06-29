@@ -1,6 +1,8 @@
 import './style.css'
 
 let circles = []
+const score = 0
+const lives = 10
 
 const setup = () => {
   const w = document.body.clientWidth
@@ -50,11 +52,27 @@ const drawText = () => {
   textFont('Rubik Moonrocks')
 
   const titleBreakpoint = 490
-  const titleSize = width < titleBreakpoint ? 42 : 64
-  textSize(titleSize)
+  const bigSize = width < titleBreakpoint ? 42 : 64
+  const smallSize = width < titleBreakpoint ? 22 : 34
+  const textPadding = width < titleBreakpoint ? 40 : 60
+  const extraPadding = 10
+
+  textSize(bigSize)
   textAlign(CENTER)
   fill(5, 200, 135)
-  text('Space Circles', width / 2, 60)
+  text('Space Circles', width / 2, textPadding + extraPadding)
+
+  textAlign(LEFT)
+  textSize(smallSize)
+  text('Score', extraPadding, height - textPadding - extraPadding)
+  textSize(bigSize)
+  text(score, extraPadding, height - extraPadding)
+
+  textAlign(RIGHT)
+  textSize(smallSize)
+  text('Lives', width - extraPadding, height - textPadding - extraPadding)
+  textSize(bigSize)
+  text(lives, width - extraPadding, height - extraPadding)
 }
 
 window.setup = setup
