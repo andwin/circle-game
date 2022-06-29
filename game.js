@@ -48,7 +48,10 @@ const updateCircles = () => {
 
 const drawText = () => {
   textFont('Rubik Moonrocks')
-  textSize(64)
+
+  const titleBreakpoint = 490
+  const titleSize = width < titleBreakpoint ? 42 : 64
+  textSize(titleSize)
   textAlign(CENTER)
   fill(5, 200, 135)
   text('Space Circles', width / 2, 60)
