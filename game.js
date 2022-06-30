@@ -1,7 +1,7 @@
 import './style.css'
 
 let circles = []
-const score = 0
+let score = 0
 let lives = 10
 let createCirclesInterval
 let updateCirclesInterval
@@ -31,6 +31,14 @@ const draw = () => {
   }
 }
 
+const mouseClicked = () => {
+  for (const c of circles) {
+    if (dist(mouseX, mouseY, c.x, c.y) * 2 < c.size) {
+      c.clicked = true
+    }
+  }
+}
+
 const createCircle = () => {
   const margin = 125
   const x = random(margin, width - margin)
@@ -46,6 +54,11 @@ const createCircle = () => {
 
 const updateCircles = () => {
   const minSize = 5
+
+  const countBeforeRemovingClicked = circles.length
+  circles = circles.filter(c => !c.clicked)
+  const clickedCircles = countBeforeRemovingClicked - circles.length
+  score += clickedCircles
 
   for (const c of circles) {
     c.size--
@@ -99,3 +112,4 @@ const gameOver = () => {
 
 window.setup = setup
 window.draw = draw
+window.mouseClicked = mouseClicked
