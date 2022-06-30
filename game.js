@@ -12,7 +12,8 @@ const setup = () => {
   createCanvas(w, h)
   textFont('Rubik Moonrocks')
 
-  createCirclesInterval = setInterval(createCircle, 5000)
+  const delayForFirstCircle = 1000
+  setTimeout(createCircle, delayForFirstCircle)
   updateCirclesInterval = setInterval(updateCircles, 20)
 }
 
@@ -50,7 +51,11 @@ const createCircle = () => {
     y,
     size,
   })
+
+  setTimeout(createCircle, timeToNextCircle())
 }
+
+const timeToNextCircle = () => Math.floor(2000 - 900 * Math.log10(score + 1))
 
 const updateCircles = () => {
   const minSize = 5
