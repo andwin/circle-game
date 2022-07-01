@@ -35,6 +35,8 @@ const draw = () => {
 }
 
 const mouseClicked = () => {
+  if (lives < 1) return
+
   let hit = false
 
   for (const c of circles) {
