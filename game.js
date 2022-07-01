@@ -66,8 +66,8 @@ const createCircle = () => {
   setTimeout(createCircle, timeToNextCircle())
 }
 
-const circleSize = () => Math.floor(250 - 100 * Math.log10(score + 1))
-const timeToNextCircle = () => Math.floor(2000 - 900 * Math.log10(score + 1))
+const circleSize = () => Math.floor(250 - 50 * Math.log10(score + 1))
+const timeToNextCircle = () => Math.floor(2000 - 700 * Math.log10(score * 0.5 + 1))
 
 const updateCircles = () => {
   const minSize = 5
