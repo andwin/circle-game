@@ -3,6 +3,8 @@ import './style.css'
 let circles = []
 let score = 0
 let lives = 10
+let nextExtraLifeAt = 10
+const extraLiveStep = 10
 let createCirclesInterval
 let updateCirclesInterval
 
@@ -74,6 +76,11 @@ const updateCircles = () => {
   circles = circles.filter(c => !c.clicked)
   const clickedCircles = countBeforeRemovingClicked - circles.length
   score += clickedCircles
+
+  if (score >= nextExtraLifeAt) {
+    lives++
+    nextExtraLifeAt += extraLiveStep
+  }
 
   for (const c of circles) {
     c.size--
