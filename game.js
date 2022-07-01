@@ -51,7 +51,7 @@ const draw = () => {
   drawText()
 }
 
-const mouseClicked = () => {
+const click = () => {
   if (lives < 1) return
 
   let hit = false
@@ -151,4 +151,4 @@ const gameOver = () => {
 
 window.setup = setup
 window.draw = draw
-window.mouseClicked = mouseClicked
+window.touchStarted = click
