@@ -41,10 +41,10 @@ const mouseClicked = () => {
 }
 
 const createCircle = () => {
-  const margin = 125
+  const size = circleSize()
+  const margin = size / 2 + 10
   const x = random(margin, width - margin)
   const y = random(margin, height - margin)
-  const size = 250
 
   circles.push({
     x,
@@ -55,6 +55,7 @@ const createCircle = () => {
   setTimeout(createCircle, timeToNextCircle())
 }
 
+const circleSize = () => Math.floor(250 - 100 * Math.log10(score + 1))
 const timeToNextCircle = () => Math.floor(2000 - 900 * Math.log10(score + 1))
 
 const updateCircles = () => {
