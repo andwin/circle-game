@@ -5,6 +5,9 @@ let score = 0
 let lives = 10
 let nextExtraLifeAt = 10
 const extraLiveStep = 10
+const mobileBreakpoint = 490
+const bigTextSize = window.innerWidth < mobileBreakpoint ? 42 : 64
+const smallTextSize = window.innerWidth < mobileBreakpoint ? 22 : 34
 let updateCirclesInterval
 const circleColors = [
   [200, 66, 135],
@@ -113,40 +116,35 @@ const updateCircles = () => {
 }
 
 const drawText = () => {
-  const titleBreakpoint = 490
-  const bigSize = width < titleBreakpoint ? 42 : 64
-  const smallSize = width < titleBreakpoint ? 22 : 34
-  const textPadding = width < titleBreakpoint ? 40 : 60
+  const textPadding = width < mobileBreakpoint ? 40 : 60
   const extraPadding = 10
 
   fill(5, 200, 135)
 
   textAlign(CENTER)
-  textSize(bigSize)
+  textSize(bigTextSize)
   text('Space Circles', width / 2, textPadding + extraPadding)
 
   textAlign(LEFT)
-  textSize(smallSize)
+  textSize(smallTextSize)
   text('Score', extraPadding, height - textPadding - extraPadding)
-  textSize(bigSize)
+  textSize(bigTextSize)
   text(score, extraPadding, height - extraPadding)
 
   textAlign(RIGHT)
-  textSize(smallSize)
+  textSize(smallTextSize)
   text('Lives', width - extraPadding, height - textPadding - extraPadding)
-  textSize(bigSize)
+  textSize(bigTextSize)
   text(lives, width - extraPadding, height - extraPadding)
 }
 
 const gameOver = () => {
   clearInterval(updateCirclesInterval)
 
-  const titleBreakpoint = 490
-  const bigSize = width < titleBreakpoint ? 42 : 64
-  const extraPadding = width < titleBreakpoint ? 20 : 35
+  const extraPadding = width < mobileBreakpoint ? 20 : 35
 
   fill(5, 200, 235)
-  textSize(bigSize)
+  textSize(bigTextSize)
   textAlign(CENTER)
   text('Game Over!', width / 2, height / 2 - extraPadding)
   text(`Score ${score}`, width / 2, height / 2 + extraPadding)
