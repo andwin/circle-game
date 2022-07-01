@@ -35,11 +35,16 @@ const draw = () => {
 }
 
 const mouseClicked = () => {
+  let hit = false
+
   for (const c of circles) {
     if (dist(mouseX, mouseY, c.x, c.y) * 2 < c.size) {
       c.clicked = true
+      hit = true
     }
   }
+
+  if (!hit) lives--
 }
 
 const createCircle = () => {
