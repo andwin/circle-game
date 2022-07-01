@@ -23,10 +23,7 @@ const circleColors = [
 ]
 
 const setup = () => {
-  const w = window.innerWidth
-  const h = window.innerHeight
-
-  createCanvas(w, h)
+  createCanvas(window.innerWidth, window.innerHeight)
   textFont('Rubik Moonrocks')
 
   const delayForFirstCircle = 1000
