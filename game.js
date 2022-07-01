@@ -115,9 +115,10 @@ const drawText = () => {
   const textPadding = width < titleBreakpoint ? 40 : 60
   const extraPadding = 10
 
-  textSize(bigSize)
-  textAlign(CENTER)
   fill(5, 200, 135)
+
+  textAlign(CENTER)
+  textSize(bigSize)
   text('Space Circles', width / 2, textPadding + extraPadding)
 
   textAlign(LEFT)
