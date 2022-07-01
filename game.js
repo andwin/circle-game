@@ -40,6 +40,11 @@ const draw = () => {
     return
   }
 
+  drawCircles()
+  drawText()
+}
+
+const drawCircles = () => {
   strokeWeight(2)
   stroke(0)
   for (const c of circles) {
@@ -47,7 +52,6 @@ const draw = () => {
     fill(r, g, b)
     circle(c.x, c.y, c.size)
   }
-  drawText()
 }
 
 const click = () => {
