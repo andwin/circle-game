@@ -19,10 +19,11 @@ const setup = () => {
 
 const draw = () => {
   background(5, 66, 135)
-  drawText()
 
   if (lives === 0) {
-    return gameOver()
+    drawText()
+    gameOver()
+    return
   }
 
   for (const c of circles) {
@@ -30,6 +31,7 @@ const draw = () => {
     fill(200, 66, 135)
     circle(c.x, c.y, c.size)
   }
+  drawText()
 }
 
 const mouseClicked = () => {
