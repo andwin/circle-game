@@ -21,8 +21,9 @@ const circleColors = [
 ]
 
 const setup = () => {
-  const w = document.body.clientWidth
-  const h = document.body.clientHeight
+  const w = window.innerWidth
+  const h = window.innerHeight
+
   createCanvas(w, h)
   textFont('Rubik Moonrocks')
 
