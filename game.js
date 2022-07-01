@@ -5,7 +5,6 @@ let score = 0
 let lives = 10
 let nextExtraLifeAt = 10
 const extraLiveStep = 10
-let createCirclesInterval
 let updateCirclesInterval
 const circleColors = [
   [200, 66, 135],
@@ -135,7 +134,6 @@ const drawText = () => {
 }
 
 const gameOver = () => {
-  clearInterval(createCirclesInterval)
   clearInterval(updateCirclesInterval)
 
   const titleBreakpoint = 490
