@@ -7,6 +7,18 @@ let nextExtraLifeAt = 10
 const extraLiveStep = 10
 let createCirclesInterval
 let updateCirclesInterval
+const circleColors = [
+  [200, 66, 135],
+  [242, 86, 75],
+  [250, 214, 70],
+  [129, 222, 53],
+  [69, 247, 206],
+  [19, 86, 145],
+  [219, 118, 245],
+  [92, 32, 107],
+  [242, 10, 176],
+  [245, 51, 77],
+]
 
 const setup = () => {
   const w = document.body.clientWidth
@@ -28,9 +40,11 @@ const draw = () => {
     return
   }
 
+  strokeWeight(2)
+  stroke(0)
   for (const c of circles) {
-    noStroke()
-    fill(200, 66, 135)
+    const [r, g, b] = c.color
+    fill(r, g, b)
     circle(c.x, c.y, c.size)
   }
   drawText()
@@ -56,11 +70,13 @@ const createCircle = () => {
   const margin = size / 2 + 10
   const x = random(margin, width - margin)
   const y = random(margin, height - margin)
+  const color = random(circleColors)
 
   circles.push({
     x,
     y,
     size,
+    color,
   })
 
   setTimeout(createCircle, timeToNextCircle())
