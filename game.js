@@ -163,4 +163,4 @@ const gameOver = () => {
 
 window.setup = setup
 window.draw = draw
-window.touchStarted = click
+window.mousePressed = click
