@@ -4,6 +4,9 @@ let circles
 let score
 let lives
 let nextExtraLifeAt
+let highscore
+let newHighscore
+const highScoreCookieName = 'highscore'
 const extraLiveStep = 10
 const mobileBreakpoint = 490
 const bigTextSize = window.innerWidth < mobileBreakpoint ? 42 : 64
@@ -21,11 +24,14 @@ const circleColors = [
   [242, 10, 176],
   [245, 51, 77],
 ]
+const highscoreColor = '#fc79ef'
 
 const setup = () => {
   score = 0
   lives = 10
   nextExtraLifeAt = 10
+  highscore = getCookie(highScoreCookieName) || 0
+  newHighscore = false
   circles = []
 
   createCanvas(window.innerWidth, window.innerHeight)
@@ -113,6 +119,11 @@ const updateCircles = () => {
   const clickedCircles = countBeforeRemovingClicked - circles.length
   score += clickedCircles
 
+  if (score > highscore) {
+    highscore = score
+    newHighscore = true
+  }
+
   if (score >= nextExtraLifeAt) {
     lives++
     nextExtraLifeAt += extraLiveStep
@@ -149,19 +160,55 @@ const drawText = () => {
   text('Lives', width - extraPadding, height - textPadding - extraPadding)
   textSize(bigTextSize)
   text(lives, width - extraPadding, height - extraPadding)
+
+  if (newHighscore) {
+    fill(highscoreColor)
+  }
+  textAlign(CENTER)
+  textSize(smallTextSize)
+  text('Highscore', width / 2, height - textPadding - extraPadding)
+  textSize(bigTextSize)
+  text(highscore, width / 2, height - extraPadding)
 }
 
 const gameOver = () => {
   const extraPadding = width < mobileBreakpoint ? 20 : 35
 
+  if (newHighscore) {
+    setCookie(highScoreCookieName, highscore)
+  }
+
   fill(5, 200, 235)
   textSize(bigTextSize)
   textAlign(CENTER)
   text('Game Over!', width / 2, height / 2 - extraPadding)
-  text(`Score ${score}`, width / 2, height / 2 + extraPadding)
+
+  let scoreText = `Score ${score}`
+  if (newHighscore) {
+    scoreText = `New highscore! ${score}`
+    fill(highscoreColor)
+  }
+  text(scoreText, width / 2, height / 2 + extraPadding)
+
+  fill(5, 200, 235)
   textSize(smallTextSize)
   text('Click to restart', width / 2, height / 2 + extraPadding * 3)
 }
+
+const getCookie = (name) => {
+  const cookieArr = document.cookie.split(';')
+
+  for (let i = 0; i < cookieArr.length; i++) {
+    const cookiePair = cookieArr[i].split('=')
+
+    if (name === cookiePair[0].trim()) {
+      return decodeURIComponent(cookiePair[1])
+    }
+  }
+
+  return null
+}
+const setCookie = (name, value) => { document.cookie = `${name}=${value}` }
 
 window.setup = setup
 window.draw = draw
