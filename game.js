@@ -61,7 +61,9 @@ const drawCircles = () => {
   }
 }
 
-const click = () => {
+const click = (e) => {
+  e.preventDefault()
+
   if (lives < 1) {
     setup()
     return
@@ -163,5 +165,4 @@ const gameOver = () => {
 
 window.setup = setup
 window.draw = draw
-window.mousePressed = click
-window.touchStart = () => true
+window.touchStarted = click
