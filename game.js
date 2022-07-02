@@ -1,9 +1,9 @@
 import './style.css'
 
-let circles = []
-let score = 0
-let lives = 10
-let nextExtraLifeAt = 10
+let circles
+let score
+let lives
+let nextExtraLifeAt
 const extraLiveStep = 10
 const mobileBreakpoint = 490
 const bigTextSize = window.innerWidth < mobileBreakpoint ? 42 : 64
@@ -23,12 +23,19 @@ const circleColors = [
 ]
 
 const setup = () => {
+  score = 0
+  lives = 10
+  nextExtraLifeAt = 10
+  circles = []
+
   createCanvas(window.innerWidth, window.innerHeight)
   textFont('Rubik Moonrocks')
 
   const delayForFirstCircle = 1000
   setTimeout(createCircle, delayForFirstCircle)
-  updateCirclesInterval = setInterval(updateCircles, 20)
+  if (!updateCirclesInterval) {
+    updateCirclesInterval = setInterval(updateCircles, 20)
+  }
 }
 
 const draw = () => {
@@ -55,7 +62,10 @@ const drawCircles = () => {
 }
 
 const click = () => {
-  if (lives < 1) return
+  if (lives < 1) {
+    setup()
+    return
+  }
 
   let hit = false
 
@@ -70,6 +80,8 @@ const click = () => {
 }
 
 const createCircle = () => {
+  if (lives < 1) return
+
   const size = circleSize()
   const margin = size / 2 + 10
   const x = random(margin, width - margin)
@@ -90,6 +102,8 @@ const circleSize = () => Math.floor(250 - 50 * Math.log10(score + 1))
 const timeToNextCircle = () => Math.floor(2000 - 700 * Math.log10(score * 0.5 + 1))
 
 const updateCircles = () => {
+  if (lives < 1) return
+
   const minSize = 5
 
   const countBeforeRemovingClicked = circles.length
@@ -136,8 +150,6 @@ const drawText = () => {
 }
 
 const gameOver = () => {
-  clearInterval(updateCirclesInterval)
-
   const extraPadding = width < mobileBreakpoint ? 20 : 35
 
   fill(5, 200, 235)
@@ -145,6 +157,8 @@ const gameOver = () => {
   textAlign(CENTER)
   text('Game Over!', width / 2, height / 2 - extraPadding)
   text(`Score ${score}`, width / 2, height / 2 + extraPadding)
+  textSize(smallTextSize)
+  text('Click to restart', width / 2, height / 2 + extraPadding * 3)
 }
 
 window.setup = setup
