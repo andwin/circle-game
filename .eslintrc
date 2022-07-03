@@ -2,5 +2,6 @@
   "extends": [
     "@andwin/eslint-config",
     "p5js"
-  ]
+  ],
+  "ignorePatterns": ["/vendor/*.js", "dist"]
 }
