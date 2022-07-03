@@ -11,7 +11,9 @@ const extraLiveStep = 10
 const mobileBreakpoint = 490
 const bigTextSize = window.innerWidth < mobileBreakpoint ? 42 : 64
 const smallTextSize = window.innerWidth < mobileBreakpoint ? 22 : 34
-let updateCirclesInterval
+let timeAtLastUpdate
+let timeSinceStart
+let timeToAddNextCircle
 const circleColors = [
   [200, 66, 135],
   [242, 86, 75],
@@ -30,18 +32,15 @@ const setup = () => {
   score = 0
   lives = 10
   nextExtraLifeAt = 10
+  timeSinceStart = 0
+  timeAtLastUpdate = (new Date()).getTime()
+  timeToAddNextCircle = 1000
   highscore = getCookie(highScoreCookieName) || 0
   newHighscore = false
   circles = []
 
   createCanvas(window.innerWidth, window.innerHeight)
   textFont('Rubik Moonrocks')
-
-  const delayForFirstCircle = 1000
-  setTimeout(createCircle, delayForFirstCircle)
-  if (!updateCirclesInterval) {
-    updateCirclesInterval = setInterval(updateCircles, 20)
-  }
 }
 
 const draw = () => {
@@ -88,7 +87,8 @@ const click = (e) => {
 }
 
 const createCircle = () => {
-  if (lives < 1) return
+  if (timeSinceStart < timeToAddNextCircle) return
+  timeToAddNextCircle += timeToNextCircle()
 
   const size = circleSize()
   const margin = size / 2 + 10
@@ -102,8 +102,6 @@ const createCircle = () => {
     size,
     color,
   })
-
-  setTimeout(createCircle, timeToNextCircle())
 }
 
 const circleSize = () => Math.floor(250 - 50 * Math.log10(score + 1))
@@ -111,6 +109,12 @@ const timeToNextCircle = () => Math.floor(2000 - 700 * Math.log10(score * 0.5 + 
 
 const updateCircles = () => {
   if (lives < 1) return
+
+  const now = (new Date()).getTime()
+  timeSinceStart += now - timeAtLastUpdate
+  timeAtLastUpdate = (new Date()).getTime()
+
+  createCircle()
 
   const minSize = 5
 
@@ -138,6 +142,7 @@ const updateCircles = () => {
   const removedCircles = circleCountBefore - circles.length
   lives -= removedCircles
 }
+setInterval(updateCircles, 20)
 
 const drawText = () => {
   const textPadding = width < mobileBreakpoint ? 40 : 60
