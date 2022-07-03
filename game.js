@@ -86,27 +86,6 @@ const click = (e) => {
   if (!hit) lives--
 }
 
-const createCircle = () => {
-  if (timeSinceStart < timeToAddNextCircle) return
-  timeToAddNextCircle += timeToNextCircle()
-
-  const size = circleSize()
-  const margin = size / 2 + 10
-  const x = random(margin, width - margin)
-  const y = random(margin, height - margin)
-  const color = random(circleColors)
-
-  circles.push({
-    x,
-    y,
-    size,
-    color,
-  })
-}
-
-const circleSize = () => Math.floor(250 - 50 * Math.log10(score + 1))
-const timeToNextCircle = () => Math.floor(2000 - 700 * Math.log10(score * 0.5 + 1))
-
 const update = () => {
   if (lives < 1) return
 
@@ -143,6 +122,27 @@ const update = () => {
   lives -= removedCircles
 }
 setInterval(update, 20)
+
+const createCircle = () => {
+  if (timeSinceStart < timeToAddNextCircle) return
+  timeToAddNextCircle += timeToNextCircle()
+
+  const size = circleSize()
+  const margin = size / 2 + 10
+  const x = random(margin, width - margin)
+  const y = random(margin, height - margin)
+  const color = random(circleColors)
+
+  circles.push({
+    x,
+    y,
+    size,
+    color,
+  })
+}
+
+const circleSize = () => Math.floor(250 - 50 * Math.log10(score + 1))
+const timeToNextCircle = () => Math.floor(2000 - 700 * Math.log10(score * 0.5 + 1))
 
 const drawText = () => {
   const textPadding = width < mobileBreakpoint ? 40 : 60
