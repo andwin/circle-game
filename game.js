@@ -107,7 +107,7 @@ const createCircle = () => {
 const circleSize = () => Math.floor(250 - 50 * Math.log10(score + 1))
 const timeToNextCircle = () => Math.floor(2000 - 700 * Math.log10(score * 0.5 + 1))
 
-const updateCircles = () => {
+const update = () => {
   if (lives < 1) return
 
   const now = (new Date()).getTime()
@@ -142,7 +142,7 @@ const updateCircles = () => {
   const removedCircles = circleCountBefore - circles.length
   lives -= removedCircles
 }
-setInterval(updateCircles, 20)
+setInterval(update, 20)
 
 const drawText = () => {
   const textPadding = width < mobileBreakpoint ? 40 : 60
