@@ -97,33 +97,38 @@ const checkCirclesForClick = () => {
 const update = () => {
   if (lives < 1) return
 
+  // Update time
   const now = (new Date()).getTime()
   timeSinceStart += now - timeAtLastUpdate
   timeAtLastUpdate = (new Date()).getTime()
 
   createCircle()
 
-  const minSize = 5
-
+  // Remove clicked circles
   const countBeforeRemovingClicked = circles.length
   circles = circles.filter(c => !c.clicked)
   const clickedCircles = countBeforeRemovingClicked - circles.length
   score += clickedCircles
 
+  // Update highscore
   if (score > highscore) {
     highscore = score
     newHighscore = true
   }
 
+  // Add extralife if next level is reached
   if (score >= nextExtraLifeAt) {
     lives++
     nextExtraLifeAt += extraLiveStep
   }
 
+  // Reduce size of all circles
   for (const c of circles) {
     c.size--
   }
 
+  // Remove circles that are smaller than then min size
+  const minSize = 5
   const circleCountBefore = circles.length
   circles = circles.filter(c => c.size > minSize)
   const removedCircles = circleCountBefore - circles.length
