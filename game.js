@@ -78,6 +78,10 @@ const click = (e) => {
     return
   }
 
+  checkCirclesForClick()
+}
+
+const checkCirclesForClick = () => {
   let hit = false
 
   for (const c of circles) {
