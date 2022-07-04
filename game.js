@@ -29,6 +29,13 @@ const circleColors = [
 const highscoreColor = '#fc79ef'
 
 const setup = () => {
+  resetGameVariables()
+
+  createCanvas(window.innerWidth, window.innerHeight)
+  textFont('Rubik Moonrocks')
+}
+
+const resetGameVariables = () => {
   score = 0
   lives = 10
   nextExtraLifeAt = 10
@@ -38,9 +45,6 @@ const setup = () => {
   highscore = getCookie(highScoreCookieName) || 0
   newHighscore = false
   circles = []
-
-  createCanvas(window.innerWidth, window.innerHeight)
-  textFont('Rubik Moonrocks')
 }
 
 const draw = () => {
@@ -70,7 +74,7 @@ const click = (e) => {
   e.preventDefault()
 
   if (lives < 1) {
-    setup()
+    resetGameVariables()
     return
   }
 
