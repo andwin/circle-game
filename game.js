@@ -95,6 +95,7 @@ const checkCirclesForClick = () => {
 }
 
 const update = () => {
+  if (document.visibilityState !== 'visible') return
   if (lives < 1) return
 
   // Update time
