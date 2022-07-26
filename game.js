@@ -15,16 +15,15 @@ let timeAtLastUpdate
 let timeSinceStart
 let timeToAddNextCircle
 const circleColors = [
-  [200, 66, 135],
-  [242, 86, 75],
-  [250, 214, 70],
-  [129, 222, 53],
-  [69, 247, 206],
-  [19, 86, 145],
-  [219, 118, 245],
-  [92, 32, 107],
-  [242, 10, 176],
-  [245, 51, 77],
+  '#0A2F51',
+  '#0E4D64',
+  '#137177',
+  '#602F72',
+  '#923E83',
+  '#EEA96E',
+  '#53383D',
+  '#A39A6C',
+  '#D8CEB7',
 ]
 const highscoreColor = '#fc79ef'
 
@@ -64,8 +63,7 @@ const drawCircles = () => {
   strokeWeight(2)
   stroke(0)
   for (const c of circles) {
-    const [r, g, b] = c.color
-    fill(r, g, b)
+    fill(c.color)
     circle(c.x, c.y, c.size)
   }
 }
