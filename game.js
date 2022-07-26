@@ -1,4 +1,5 @@
 import './style.css'
+import * as colors from './colors'
 
 let circles
 let score
@@ -14,18 +15,6 @@ const smallTextSize = window.innerWidth < mobileBreakpoint ? 22 : 34
 let timeAtLastUpdate
 let timeSinceStart
 let timeToAddNextCircle
-const circleColors = [
-  '#0A2F51',
-  '#0E4D64',
-  '#137177',
-  '#602F72',
-  '#923E83',
-  '#EEA96E',
-  '#53383D',
-  '#A39A6C',
-  '#D8CEB7',
-]
-const highscoreColor = '#fc79ef'
 
 const setup = () => {
   resetGameVariables()
@@ -143,7 +132,7 @@ const createCircle = () => {
   const margin = size / 2 + 10
   const x = random(margin, width - margin)
   const y = random(margin, height - margin)
-  const color = random(circleColors)
+  const color = random(colors.circleColors)
 
   circles.push({
     x,
@@ -179,7 +168,7 @@ const drawText = () => {
   text(lives, width - extraPadding, height - extraPadding)
 
   if (newHighscore) {
-    fill(highscoreColor)
+    fill(colors.highscoreColor)
   }
   textAlign(CENTER)
   textSize(smallTextSize)
@@ -203,7 +192,7 @@ const gameOver = () => {
   let scoreText = `Score ${score}`
   if (newHighscore) {
     scoreText = `New highscore! ${score}`
-    fill(highscoreColor)
+    fill(colors.highscoreColor)
   }
   text(scoreText, width / 2, height / 2 + extraPadding)
 
