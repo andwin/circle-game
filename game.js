@@ -184,7 +184,7 @@ const gameOver = () => {
     setCookie(highScoreCookieName, highscore)
   }
 
-  fill(5, 200, 235)
+  fill(colors.gameOverText)
   textSize(bigTextSize)
   textAlign(CENTER)
   text('Game Over!', width / 2, height / 2 - extraPadding)
@@ -196,7 +196,7 @@ const gameOver = () => {
   }
   text(scoreText, width / 2, height / 2 + extraPadding)
 
-  fill(5, 200, 235)
+  fill(colors.gameOverText)
   textSize(smallTextSize)
   text('Click to restart', width / 2, height / 2 + extraPadding * 3)
 }
