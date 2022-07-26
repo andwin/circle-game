@@ -36,7 +36,7 @@ const resetGameVariables = () => {
 }
 
 const draw = () => {
-  background(5, 66, 135)
+  background('#054287')
 
   if (lives === 0) {
     drawText()
