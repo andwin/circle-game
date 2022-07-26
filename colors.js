@@ -11,5 +11,6 @@ export const circleColors = [
 ]
 
 export const background = '#054287'
+export const text = '#05C887'
 export const highscore = '#fc79ef'
 export const gameOverText = '#05C8EB'

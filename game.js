@@ -149,7 +149,7 @@ const drawText = () => {
   const textPadding = width < mobileBreakpoint ? 40 : 60
   const extraPadding = 10
 
-  fill(5, 200, 135)
+  fill(colors.text)
 
   textAlign(CENTER)
   textSize(bigTextSize)
