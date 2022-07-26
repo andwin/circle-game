@@ -10,4 +10,5 @@ export const circleColors = [
   '#D8CEB7',
 ]
 
+export const background = '#054287'
 export const highscoreColor = '#fc79ef'
