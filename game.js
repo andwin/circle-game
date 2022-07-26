@@ -168,7 +168,7 @@ const drawText = () => {
   text(lives, width - extraPadding, height - extraPadding)
 
   if (newHighscore) {
-    fill(colors.highscoreColor)
+    fill(colors.highscore)
   }
   textAlign(CENTER)
   textSize(smallTextSize)
