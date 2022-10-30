@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install and test
+        run: |
+          node -v
+          npm -v
+          npm ci
+          npm test
+
+      - name: Deploy to github pages
+        run: |
+          npm run deploy
