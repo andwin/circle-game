@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "eslint .",
-    "deploy": "vite build --base=/space-circles/ && git add dist -f && git commit -m 'Deploy' && git subtree push --prefix dist origin gh-pages"
+    "deploy": "vite build --base=/space-circles/ && npx gh-pages --dist dist --branch gh-pages"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@andwin/eslint-config": "^0.0.11",
     "eslint-config-p5js": "^1.1.0",
+    "gh-pages": "^4.0.0",
     "vite": "^2.9.13"
   }
 }
